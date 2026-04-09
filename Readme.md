@@ -42,6 +42,12 @@ This project uses Open-Meteo, a free weather API.
 
 ---
 
+## Live Demo
+```
+
+```
+---
+
 ## 💡 What I Learned
 * Working with APIs in JavaScript
 * Using fetch() to get data from server
