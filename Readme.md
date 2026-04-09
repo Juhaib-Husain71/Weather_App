@@ -44,7 +44,7 @@ This project uses Open-Meteo, a free weather API.
 
 ## Live Demo
 ```
-
+https://juhaib-husain71.github.io/Weather_App/
 ```
 ---
 
