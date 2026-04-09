@@ -1,0 +1,263 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    width: 100%;
+}
+/* body{
+    background: linear-gradient(#4e54c8, #8f94fb);
+} */
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+}
+.search{
+    display: flex;
+}
+
+.search input{
+    height: 35px;
+    width: 45vw;
+    background-color: white;
+    color: black;
+    border: 1.5px solid #608BFD;
+    outline: none;
+    font-size: 0.95rem;
+    padding-left: 0.5rem;
+    border-radius: 0.75rem 0 0 0.75rem;
+}
+.search-icon{
+    width: 12vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    background-color: #608BFD;
+    border-radius: 0 0.6rem 0.6rem 0;
+    color: white;
+}
+
+.bar{
+    width: 10vw;
+    font-size: 1.3rem;
+}
+
+.hero-sec1{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 1.5rem;
+    background: transparent;
+    font-family: sans-serif;
+    /* color: white; */
+}
+
+.city{
+    font-size: 2rem;
+    font-weight: 550;
+}
+.date{
+    font-size: 0.8rem;
+}
+
+.temp{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem 0 1rem;
+}
+.temp-icon img{
+    height: 130px;
+    width: 140px;
+    /* background-image: url("images/weather1.png"); */
+    background-size: cover;
+}
+
+.num-msg0{
+    width: 25px;
+    position: relative;
+    left: 80%;
+    top: 12px;
+}
+.num-msg1{
+    font-size: 3.2rem;
+    font-weight: 600;
+}
+.num-msg2{
+    margin-left: 5px;
+}
+
+
+.hero-sec2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+.slide{
+    height: 9vh;
+    width: 85%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 1.5px solid rgba(255, 255, 255, 0.85);
+    border-radius: 1.2rem;
+}
+
+.s-icon{
+    height: 32px;
+    width: 32px;
+    background-size: cover;
+}
+.s-msg1{
+    font-size: 0.85rem;
+    position: relative;
+    right: 3.85rem;
+}
+.s-msg2{
+    font-size: 0.85rem;
+}
+
+.hero-sec3{
+    display: flex;
+    flex-direction: column;
+    padding-top: 2.5rem;
+}
+
+.days{
+    display: flex;
+    justify-content: space-between;
+    font-family: sans-serif;
+    padding-left: 10px;
+}
+.days a{
+    text-decoration: none;
+    color: #0f172a;
+}
+#day1{
+    text-decoration: underline black;
+}
+
+.footer-slide{
+    display: flex;
+    padding: 10px 5px 10px 5px;
+    gap: 10px;
+    overflow-x: auto;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    height: 17vh;
+    width: 20vw;
+    background: rgba(255, 255, 255, 0.75);
+    flex-shrink: 0;
+    border-radius: 1.5rem;
+    padding: 7px;
+}
+.fs-img{
+    height: 38px;
+}
+.fs-p1{
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+}
+.fs-p2{
+    margin-top: 3px;
+}
+
+
+/* desktop-styling */
+@media (min-width: 766px){
+    .navbar{
+        padding: 0.5rem 2rem 0 2rem;
+    }
+    .search input{
+        height: 45px;
+        width: 25vw;
+        font-size: 1.1rem;
+    }
+    .search-icon{
+        width: 4rem;
+    }
+
+    .hero-sec1{
+        padding: 0.75rem 2.5rem 1.5rem 2.5rem;
+        gap: 15px;
+    }
+    .city{
+        font-size: 3rem;
+    }
+    .date{
+        font-size: 1rem;
+    }
+    .temp-icon img {
+        height: 160px;
+        width: 170px;
+    }
+    .temp{
+        padding: 0;
+        justify-content: space-around;
+    }
+    .num-msg1 {
+        font-size: 4rem;
+    }
+
+    .hero-sec2{
+        gap: 15px;
+    }
+    .slide{
+        height: 13vh;
+        width: 75%;
+    }
+    .s-icon{
+        height: 45px;
+        width: 45px;
+    }
+    .s-msg1{
+        font-size: 1.1rem;
+        right: 20%;
+    }
+    .s-msg2{
+        font-size: 1.1rem;
+    }
+
+    #day1{
+        font-size: 1.3rem;
+    }
+    .days a{
+        font-size: 1.3rem;
+        font-weight: bold;
+    }
+
+    .footer-slide{
+        gap: 1.5rem;
+        padding-left: 1rem;
+        padding-bottom: 1.25rem;
+    }
+    .box{
+        height: 24vh;
+        width: 9vw;
+        border-radius: 2rem;
+        gap: 0.75rem;
+    }
+    .fs-img{
+        height: 3rem;
+    }
+    .fs-p1{
+        font-size: 1rem;
+    }
+    .fs-p2{
+        font-size: 1.2rem;
+    }
+}

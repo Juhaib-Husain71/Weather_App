@@ -1,0 +1,152 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: linear-gradient(to right, #fff6d5, #ffe9a7);
+    font-family: sans-serif;
+}
+
+.navbar{
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+.navbar a{
+    margin-left: 10px;
+    text-decoration: none;
+    color: black;
+    font-size: 1.3rem;
+}
+.nav-msg{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+#outer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.main-sec1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 27vh;
+    width: 85%;
+    border-radius: 2rem;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1.5px solid rgba(255, 255, 255, 0.85);
+}
+.weather{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem 0 1rem;
+}
+.temp{
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+.temp-img{
+    height: 40px;
+}
+
+
+.about{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 10%;
+
+}
+.info{
+    font-size: 0.85rem;
+    text-align: center;
+}
+.info-img{
+    height: 30px;
+}
+
+
+.week-sec{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    align-items: center;
+    gap: 0.65rem;
+}
+.slide{
+    height: 9vh;
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1.5px solid rgba(255, 255, 255, 0.85);
+    border-radius: 1.2rem;
+    padding: 0 5% 0 5%;
+}
+.s-img{
+    height: 40px;
+}
+.s-day{
+    font-size: 0.85rem;
+}
+.s-temp{
+    font-size: 0.95rem;
+    font-weight: 550;
+}
+.tempra{
+    display: flex;
+    position: relative;
+    left: 17%;
+}
+.num-msg0{
+    position: relative;
+    bottom: 5px;    
+    font-size: 0.85rem;
+}
+
+
+@media (min-width: 766px){
+    .main-sec1{
+        margin-top: 1rem;
+        width: 50%;
+        height: 35vh;
+    }
+    .temp-img {
+        height: 70px;
+    }
+    .about{
+        margin-top: 2rem;
+    }
+
+    .weather{
+        padding: 0 2.2rem 0 2.2rem;
+    }
+    .weather:focus{
+        outline: none;
+    }
+
+    .week-sec{
+        gap: 1.2rem;
+        margin-bottom: 2rem;
+    }
+    .slide{
+        height: 12vh;
+        width: 65%;
+    }
+    .s-day {
+        font-size: 1rem;
+    }
+    .s-temp {
+        font-size: 1.1rem;
+    }
+    .s-img {
+        height: 55px;
+    }
+}
