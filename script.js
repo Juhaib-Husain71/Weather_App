@@ -92,7 +92,8 @@ function updateMainUI(location, weather) {
   tempDescEl.textContent = wText;
 
   // Image accourding to weather
-  loadWeatherImage(cw.weathercode);
+  loadWeatherImage(cw.weathercode, cw.is_day);
+  // console.log(cw.is_day);
 
   // console.log(weather.hourly.us_aqi);
 
@@ -168,7 +169,7 @@ nextHours.forEach((t, i) => {
   //console.log(hour, nextTemps[i]);
   boxP1[i].textContent = hour;
   boxP2[i].innerHTML = `<p>${nextTemps[i]}<sup>o</sup></p>`;
-  checkCode(codeHW[i], boxImgs[i]);
+  checkCode(codeHW[i], boxImgs[i], cw.is_day);
   
 });
 
@@ -217,16 +218,25 @@ window.addEventListener('load', () => {
 
 
 // Load weather image and body background color(gradient) accourding to weather.
-function loadWeatherImage(code){
+function loadWeatherImage(code, isDay){
   let WIcon = document.querySelector("#weatherIcon");
   let BodyCol = document.querySelector("body");
 
     if (code === 0) {
-      WIcon.src = "images/sun.png";
-      BodyCol.style.background = "linear-gradient(to right, #fff6d5, #ffe9a7)";
+      if(isDay){
+          WIcon.src = "images/sun.png";
+          BodyCol.style.background = "linear-gradient(to right, #fff6d5, #ffe9a7)";
+      }else{
+          WIcon.src = "images/night-icons/full-moon.png";
+          BodyCol.style.background = "linear-gradient(to right, #dfe9f3, #c8d9eb)";
+      }
 
     }else if (code === 1 || code === 2) {
-      WIcon.src = "images/partly-cloud.png";
+      if(isDay){
+          WIcon.src = "images/partly-cloud.png";
+      }else{
+          WIcon.src = "images/night-icons/cloudy-night.png";
+      }
       BodyCol.style.background = "linear-gradient(to right, #dbeafe, #f0f9ff)";
 
     }else if (code === 3) {
@@ -234,7 +244,11 @@ function loadWeatherImage(code){
       BodyCol.style.background = "linear-gradient(to right, #e3edf7, #f5f7fa)";
 
     }else if ((code >= 51 && code <= 67) || (code >= 80 && code <= 82)) {
-      WIcon.src = "images/rainy.png";
+      if(isDay){
+          WIcon.src = "images/rainy.png";
+      }else{
+          WIcon.src = "images/night-icons/rainy-night.png";
+      }
       BodyCol.style.background = "linear-gradient(to right, #e0e7ff, #f3f4ff)";
 
     }else if ((code >= 71 && code <= 77) || code === 85 || code === 86) {
@@ -248,18 +262,19 @@ function loadWeatherImage(code){
     }
 }
 
-function checkCode(code, sImg){
+function checkCode(code, sImg, isDay){
+  
   if (code === 0) {
-    sImg.src = "images/sun.png";
+    sImg.src = isDay ? "images/sun.png" : "images/night-icons/full-moon.png";
 
   }else if (code === 1 || code === 2) {
-    sImg.src = "images/partly-cloud.png";
+    sImg.src = isDay ? "images/partly-cloud.png" : "images/night-icons/cloudy-night.png";
 
   }else if (code === 3) {
     sImg.src = "images/clouds.png";
 
   }else if ((code >= 51 && code <= 67) || (code >= 80 && code <= 82)) {
-    sImg.src = "images/rainy.png";
+    sImg.src = isDay ? "images/rainy.png" : "images/night-icons/rainy-night.png";
 
   }else if ((code >= 71 && code <= 77) || code === 85 || code === 86) {
     sImg.src = "images/snowy.png";
