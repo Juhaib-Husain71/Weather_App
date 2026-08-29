@@ -25,8 +25,8 @@ if (savedData) {
   let totalH = Number(Shour.toFixed(2));
   let hours = Math.floor(totalH);
   let mint = Math.round((totalH-hours) * 60);
-  console.log(totalH);
-  console.log(mint);
+  // console.log(totalH);
+  // console.log(mint);
   sunP.textContent = `${hours}h ${mint}m`;
 
   //rain

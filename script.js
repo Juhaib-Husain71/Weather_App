@@ -42,6 +42,8 @@ function weatherCodeToText(code) {
 const input = $('.search input');
 const searchBtn = $('.search .search-icon');
 
+const loader = $('#loader');
+
 const cityEl = $('.city');
 const dateEl = $('.date p');
 const tempNumEl = $('.num-msg1');
@@ -49,6 +51,14 @@ const tempDescEl = $('.num-msg2');
 
 const slideEls = $$('.hero-sec2 .slide'); // [ rainfall, wind, humidity ]
 const footerBoxes = $$('.footer-slide .box');
+
+//loader
+function showLoader() {
+  loader.classList.remove("hide-loader")
+}
+function hideLoader() {
+  loader.classList.add("hide-loader");
+}
 
 // ------ Geocoding + Weather fetch -------
 async function geocodeCity(name) {
@@ -102,6 +112,7 @@ function updateMainUI(location, weather) {
   const idx = times.indexOf(cw.time);
   let humidity = null;
   let precipitationHour = null;
+
   if (idx !== -1) {
     humidity = weather.hourly.relativehumidity_2m[idx];
     precipitationHour = weather.hourly.precipitation[idx];
@@ -134,50 +145,51 @@ function updateMainUI(location, weather) {
   localStorage.setItem("weatherData", JSON.stringify(weather));
 
 
-// print hourly hours weather
-// console.log(weather.hourly.weather_code);
-let temps = weather.hourly.temperature_2m;
-let codeHW = weather.hourly.weather_code;
-//console.log(codeHW);
+  // print hourly hours weather
+  // console.log(weather.hourly.weather_code);
+  let temps = weather.hourly.temperature_2m;
+  let codeHW = weather.hourly.weather_code;
+  //console.log(codeHW);
 
-let now = new Date();   // current time
+  let now = new Date();   // current time
 
-// find index of current hour
-let currentIndex = times.findIndex(t => {
-  let apiTime = new Date(t);
-  return apiTime.getHours() === now.getHours() &&
-         apiTime.getDate() === now.getDate();
-});
-
-// get current + next 10 hours
-let nextHours = times.slice(currentIndex, currentIndex + 11);
-let nextTemps = temps.slice(currentIndex, currentIndex + 11);
-
-// footer-slide box elements
-let boxP1 = document.querySelectorAll(".fs-p1");
-let boxP2 = document.querySelectorAll(".fs-p2");
-let boxImgs = document.querySelectorAll(".fs-img");
-
-nextHours.forEach((t, i) => {
-  let date = new Date(t);
-
-  let hour = date.toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit"
+  // find index of current hour
+  let currentIndex = times.findIndex(t => {
+    let apiTime = new Date(t);
+    return apiTime.getHours() === now.getHours() &&
+          apiTime.getDate() === now.getDate();
   });
 
-  //console.log(hour, nextTemps[i]);
-  boxP1[i].textContent = hour;
-  boxP2[i].innerHTML = `<p>${nextTemps[i]}<sup>o</sup></p>`;
-  checkCode(codeHW[i], boxImgs[i], cw.is_day);
-  
-});
+  // get current + next 10 hours
+  let nextHours = times.slice(currentIndex, currentIndex + 11);
+  let nextTemps = temps.slice(currentIndex, currentIndex + 11);
+
+  // footer-slide box elements
+  let boxP1 = document.querySelectorAll(".fs-p1");
+  let boxP2 = document.querySelectorAll(".fs-p2");
+  let boxImgs = document.querySelectorAll(".fs-img");
+
+  nextHours.forEach((t, i) => {
+    let date = new Date(t);
+
+    let hour = date.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+
+    //console.log(hour, nextTemps[i]);
+    boxP1[i].textContent = hour;
+    boxP2[i].innerHTML = `<p>${nextTemps[i]}<sup>o</sup></p>`;
+    checkCode(codeHW[i], boxImgs[i], cw.is_day);
+    
+  });
 
 }
 
 
 // Search flow
 async function doSearch(cityName) {
+  showLoader();
   try {
     tempNumEl.textContent = '...';      //temprature
     tempDescEl.textContent = 'Loading...';    //weather type
@@ -190,6 +202,8 @@ async function doSearch(cityName) {
     tempNumEl.textContent = '--';
     tempDescEl.textContent = 'Not found';
     cityEl.innerHTML = `<p>Not found</p><p>${input.value}</p>`;
+  } finally{
+    hideLoader();
   }
 }
 
@@ -221,6 +235,7 @@ window.addEventListener('load', () => {
 function loadWeatherImage(code, isDay){
   let WIcon = document.querySelector("#weatherIcon");
   let BodyCol = document.querySelector("body");
+  // console.log(code);
 
     if (code === 0) {
       if(isDay){
